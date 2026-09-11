@@ -90,6 +90,7 @@ for (let i = 1; i <= 50; i++) {
     console.log("");
     console.log("");
     console.log("--------------------")
+
     console.log("Ticket #" + ticket.id);
     console.log("Passager : " + ticket.passengerName);
     console.log("Trajet : " + trajet.departure + " → " + trajet.destination);
@@ -137,12 +138,13 @@ function AnnulerTicket() {
        }
 
     let ticket = tickets[index];
+   
 
     let trajet = RechercheTrajet(ticket.tripId, trips);
 
     trajet.availableSeats++;
 
-    tickets.splice(index, 1);
+     tickets.splice(index, 1);
 
     console.log("Ticket annulé avec succès.");
 }
@@ -152,8 +154,10 @@ function AnnulerTicket() {
 
 function RechercherTicket() {
 let nom = prompt("Nom du passager : ");
+
 for (let ticket of tickets) {
   if (ticket.passengerName === nom) {
+
    let trajet = RechercheTrajet(ticket.tripId, trips);
 
     console.log("");
@@ -163,23 +167,29 @@ for (let ticket of tickets) {
     console.log("Place : " + ticket.seatNumber);
     console.log("Prix : " + ticket.price + " DH");
    }
+
 }
 }
 
 function FiltrerTrajets() {
-let ville = prompt("Ville de départ : ");
+    let ville = prompt("Ville de départ : ");
 
-for (let trajet of trips) {
-if (trajet.departure === ville) {
+    for (let trajet of trips) {
+    if (trajet.departure === ville) {
+    trajet.departure.toLowerCase;
+
     console.log(
     trajet.departure + " → " +
     trajet.destination + " : " +
-    trajet.price + " DH"
-    );
-        
-        
+    trajet.price + " DH");
     }
-}}
+    
+}
+
+}
+
+
+
 
 function TrierTrajets() {
     for (let i = 0; i < trips.length - 1; i++) {
@@ -203,10 +213,23 @@ function TrierTrajets() {
 }
 
 //10.bonus
+function AfficherStatistiques() {
 
+    console.log("");
+    console.log("========== STATISTIQUES ==========");
+    // 1. Nombre total de tickets
+    console.log("Nombre total de tickets : " + tickets.length);
+    // 2. Chiffre d'affaires
+    let total = 0;
+    for (let ticket of tickets) {
+        total = total + ticket.price;
+    }
+
+    console.log("Chiffre d'affaires total : " + total + " DH");
+}
+let choix ;
 while (choix !== 0) {
-
-    let menu = `
+let menu = `
 =================================
         RAILWAY MANAGER
 =================================
@@ -218,16 +241,12 @@ while (choix !== 0) {
 5. Rechercher un ticket
 6. Filtrer les trajets
 7. Trier les trajets
+8. AfficherStatistiques
 0. Quitter
 `;
 
-    choix = Number(prompt(menu+"\nVotre choix : "));
-     
+    choix = Number(prompt(menu+"\nVotre choix : "))
     switch (choix){
-
-    case 0 :
-      console.log("Au revoir !");
-      break;
 
     case 1 :
         AffichageTrajet();
@@ -256,6 +275,10 @@ while (choix !== 0) {
     case 7 :
         TrierTrajets();
     break ;
+    case 0 :
+      console.log("Au revoir !");
+      AfficherStatistiques();
+      break;
      default:
         console.log("Choix invalide.");
     }
