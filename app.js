@@ -1,6 +1,13 @@
 var prompt = require('prompt-sync')();
 const trips = require('./data');
-
+const tickets = [
+    { id: 1, passengerName: "Zakaria", tripId: 1, seatNumber: 1, price: 25 },
+    { id: 2, passengerName: "Adil", tripId: 1, seatNumber: 2, price: 25 },
+    { id: 3, passengerName: "Aya", tripId: 2, seatNumber: 1, price: 90 },
+    { id: 4, passengerName: "Omar", tripId: 3, seatNumber: 1, price: 140 },
+    { id: 5, passengerName: "Yassine", tripId: 4, seatNumber: 1, price: 65 },
+    { id: 6, passengerName: "Sara", tripId: 1, seatNumber: 3, price: 25 }
+];
 
 
 //AffichageTicket 
@@ -21,7 +28,7 @@ function AffichageTrajet() {
 
 //AcheterTicket
 let nextId = 1;
-const tickets = [];
+
 
 function RechercheTrajet(id, trips) {
 
