@@ -1,13 +1,6 @@
 var prompt = require('prompt-sync')();
 const trips = require('./data');
-const tickets = [
-    { id: 1, passengerName: "Zakaria", tripId: 1, seatNumber: 1, price: 25 },
-    { id: 2, passengerName: "Adil", tripId: 1, seatNumber: 2, price: 25 },
-    { id: 3, passengerName: "Aya", tripId: 2, seatNumber: 1, price: 90 },
-    { id: 4, passengerName: "Omar", tripId: 3, seatNumber: 1, price: 140 },
-    { id: 5, passengerName: "Yassine", tripId: 4, seatNumber: 1, price: 65 },
-    { id: 6, passengerName: "Sara", tripId: 1, seatNumber: 3, price: 25 }
-];
+
 
 
 //AffichageTicket 
@@ -27,8 +20,15 @@ function AffichageTrajet() {
 }
 
 //AcheterTicket
-let nextId = 1;
-
+let nextId = 7;  //pas 1 parce que j ai stocker manuellement 6 ticket et
+                  // en dehors pour garder sa valeur et donner un id unique
+const tickets = [
+    { id: 1, passengerName: "asmaa", tripId: 1, seatNumber: 1, price: 25 },
+    { id: 2, passengerName: "chaimaa", tripId: 1, seatNumber: 2, price: 25 },
+    { id: 3, passengerName: "aya", tripId: 2, seatNumber: 1, price: 90 },
+    { id: 4, passengerName: "omar", tripId: 3, seatNumber: 1, price: 140 },
+    { id: 5, passengerName: "yassine", tripId: 4, seatNumber: 1, price: 65 },
+    { id: 6, passengerName: "sara", tripId: 1, seatNumber: 3, price: 25 }];
 
 function RechercheTrajet(id, trips) {
 
@@ -41,7 +41,7 @@ function RechercheTrajet(id, trips) {
     return null;
 }
 
-function CreateTicket() {
+function AcheterTicket() {
 
     let name = prompt("Nom du passager : ");
     let choixTrajet = Number(prompt("Identifiant du trajet : "));
@@ -163,7 +163,7 @@ function RechercherTicket() {
 let nom = prompt("Nom du passager : ");
 
 for (let ticket of tickets) {
-  if (ticket.passengerName === nom) {
+  if (ticket.passengerName === nom ) {
 
    let trajet = RechercheTrajet(ticket.tripId, trips);
 
@@ -183,7 +183,7 @@ function FiltrerTrajets() {
 
     for (let trajet of trips) {
     if (trajet.departure === ville) {
-    trajet.departure.toLowerCase;
+   
 
     console.log(
     trajet.departure + " → " +
@@ -219,6 +219,12 @@ function TrierTrajets() {
     }
 }
 
+
+
+
+
+
+
 //10.bonus
 function AfficherStatistiques() {
 
@@ -248,7 +254,6 @@ let menu = `
 5. Rechercher un ticket
 6. Filtrer les trajets
 7. Trier les trajets
-8. AfficherStatistiques
 0. Quitter
 `;
 
@@ -260,7 +265,7 @@ let menu = `
        break;
 
      case 2 :
-        CreateTicket();
+        AcheterTicket();
         break;
   
      case 3 :
